@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Valentine's Day Surprise</title>
+    <link href="index.css" rel="stylesheet" 
+
+</head>
+<body>
+    <div class="container" id="login-section">
+        <h1>Welcome to Your Valentine Surprise!</h1>
+        <p>ENJOY THE FEELING.</p>
+        <input type="text" id="username" placeholder="Enter your name" required>
+        <input type="password" id="password" placeholder="Enter your password" required>
+        <button onclick="showSurprise()">Sign Up</button>
+    </div>
+
+    <div class="container hidden" id="surprise-section">
+        <h1>Hi, By💖!</h1>
+        <p>You’ve unlocked a special surprise! I hope you enjoy...:)</p>
+        
+        <!-- Image Gallery with Multiple Pictures -->
+        <div class="image-gallery">
+            <img src="boy.jpg" alt="Picture 2">
+        </div>
+
+        <button class="next-btn" onclick="goToQuestion()">Next</button>
+    </div>
+
+    <!-- Separate Question Section -->
+    <div class="container hidden" id="question-section">
+        <h2>Would you make my heart complete and be my Valentine on February 14?</h2>
+        <div class="response-container">
+            <button onclick="response('yes')">YES 💖</button>
+            <button onclick="response('no')">NO 😢</button>
+        </div>
+    </div>
+
+    <!-- "Are You Sure?" Confirmation -->
+    <div class="container hidden" id="confirm-section">
+        <h2>Are you sure?</h2>
+        <div class="response-container">
+            <button onclick="finalResponse('yes')">Yes, I'm sure 💘</button>
+            <button onclick="finalResponse('no')">No, I changed my mind 💔</button>
+        </div>
+    </div>
+
+    <!-- Response Section -->
+    <div class="container hidden" id="response-section">
+        <h1 id="response-message"></h1>
+    </div>
+
+    <script>
+        function showSurprise() {
+            document.getElementById('login-section').classList.add('hidden');
+            document.getElementById('surprise-section').classList.remove('hidden');
+        }
+
+        function goToQuestion() {
+            document.getElementById('surprise-section').classList.add('hidden');
+            document.getElementById('question-section').classList.remove('hidden');
+        }
+
+        function response(answer) {
+            if (answer === 'yes') {
+                document.getElementById('question-section').classList.add('hidden');
+                document.getElementById('confirm-section').classList.remove('hidden');
+            } else {
+                const message = "Oh no! Maybe next time. 😢";
+                document.getElementById('question-section').classList.add('hidden');
+                document.getElementById('response-section').classList.remove('hidden');
+                document.getElementById('response-message').textContent = message;
+            }
+        }
+
+        function finalResponse(answer) {
+            const message = answer === 'yes' 
+                ? "Yay! Can't wait to spend Valentine's Day with you! thank you..❤️"
+                : "Oh no! Maybe next time. 😢";
+            document.getElementById('confirm-section').classList.add('hidden');
+            document.getElementById('response-section').classList.remove('hidden');
+            document.getElementById('response-message').textContent = message;
+        }
+    </script>
+</body>
+</html>
